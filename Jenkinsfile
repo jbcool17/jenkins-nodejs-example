@@ -1,4 +1,4 @@
-podTemplate(label: 'build-pod', containers: [
+podTemplate(label: 'node-build-pod', containers: [
   containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
   containerTemplate(name: 'node', image: 'node:8.16.0-alpine', command: 'cat', ttyEnabled: true),
   containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true)
@@ -15,7 +15,7 @@ volumes: [
                 sh 'git clone -b master https://github.com/jbcool17/jenkins-nodejs-example.git'
             }
       }
-      stage('Maven Build') {
+      stage('Node Build') {
           container('node') {
             dir('jenkins-nodejs-example/') {
               sh 'node -v'
@@ -29,7 +29,7 @@ volumes: [
             dir('jenkins-nodejs-example/') {
               sh 'docker build -t node-test:v1 .'
               sh 'docker tag nodejs-test:v1 jbcool17/nodejs-test:v1'
-              sh 'docker push jbcool17/nodejs-test:v1'
+          
             }
           }
       }
