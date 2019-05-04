@@ -27,7 +27,7 @@ volumes: [
       stage('Check running containers') {
           container('docker') {
             dir('jenkins-nodejs-example/') {
-              sh 'docker build -t node-test:v1 .'
+              sh 'docker build -t nodejs-test:v1 .'
               sh 'docker tag nodejs-test:v1 jbcool17/nodejs-test:v1'
 
             }
