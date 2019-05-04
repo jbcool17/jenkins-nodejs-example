@@ -7,7 +7,7 @@ volumes: [
   hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
 ]
 ) {
-  node('build-pod') {
+  node('node-build-pod') {
     stage('Clone repository') {
             container('git') {
                 sh 'whoami'
@@ -29,7 +29,7 @@ volumes: [
             dir('jenkins-nodejs-example/') {
               sh 'docker build -t node-test:v1 .'
               sh 'docker tag nodejs-test:v1 jbcool17/nodejs-test:v1'
-          
+
             }
           }
       }
